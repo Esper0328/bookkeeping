@@ -20,19 +20,25 @@ def findAccount(transaction_list):
     return_list = []
     for transaction in transaction_list:
         if(len(return_list) == 0):
-            print(transaction.debtor)
             return_list.append(transaction.debtor)
         else:
-            print(len(return_list))
             isFirstAccount = True
+            if(transaction.debtor  == "None"):
+                 continue
             for account in return_list:
-                print("Account:"+account)
-                print("Transaction:"+transaction.debtor)
                 if(account == transaction.debtor):
                     isFirstAccount = False
             if(isFirstAccount):
-                 print("New")
                  return_list.append(transaction.debtor)
+    for transaction in transaction_list:
+        isFirstAccount = True
+        if(transaction.creditor  == "None"):
+             continue
+        for account in return_list:
+            if(account == transaction.creditor):
+                isFirstAccount = False
+        if(isFirstAccount):
+            return_list.append(transaction.creditor)
     return return_list
 
 transaction_list = []
@@ -48,5 +54,7 @@ if len(args) == 2:
                 transaction = Transaction(items[0], items[1], items[2], items[3], items[4])
                 transaction_list.append(transaction)
     account_list = findAccount(transaction_list)
+    for account in account_list:
+        print(account)
 else:
     print('Invalid Number of Argument')
