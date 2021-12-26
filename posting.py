@@ -41,6 +41,11 @@ def findAccount(transaction_list):
             return_list.append(transaction.creditor)
     return return_list
 
+def displayAccount(transaction_list, account_list):
+    for account in account_list:
+        print(account)
+
+
 transaction_list = []
 account_list = []
 
@@ -54,7 +59,6 @@ if len(args) == 2:
                 transaction = Transaction(items[0], items[1], items[2], items[3], items[4])
                 transaction_list.append(transaction)
     account_list = findAccount(transaction_list)
-    for account in account_list:
-        print(account)
+    displayAccount(transaction_list, account_list)
 else:
     print('Invalid Number of Argument')
