@@ -15,6 +15,26 @@ class Transaction:
         print(self.creditor)
         print(self.creditor_charge)
 
+
+def findAccount(transaction_list):
+    return_list = []
+    for transaction in transaction_list:
+        if(len(return_list) == 0):
+            print(transaction.debtor)
+            return_list.append(transaction.debtor)
+        else:
+            print(len(return_list))
+            isFirstAccount = True
+            for account in return_list:
+                print("Account:"+account)
+                print("Transaction:"+transaction.debtor)
+                if(account == transaction.debtor):
+                    isFirstAccount = False
+            if(isFirstAccount):
+                 print("New")
+                 return_list.append(transaction.debtor)
+    return return_list
+
 transaction_list = []
 account_list = []
 
@@ -27,21 +47,6 @@ if len(args) == 2:
             if(len(items[0]) != 0):
                 transaction = Transaction(items[0], items[1], items[2], items[3], items[4])
                 transaction_list.append(transaction)
-    for transaction in transaction_list:
-        if(len(account_list) == 0):
-            print(transaction.debtor)
-            account_list.append(transaction.debtor)
-        else:
-            print(len(account_list))
-            isFirstAccount = True
-            for account in account_list:
-                print("Account:"+account)
-                print("Transaction:"+transaction.debtor)
-                if(account == transaction.debtor):
-                    isFirstAccount = False
-            if(isFirstAccount):
-                 print("New")
-                 account_list.append(transaction.debtor)
-        
+    account_list = findAccount(transaction_list)
 else:
     print('Invalid Number of Argument')
