@@ -44,7 +44,39 @@ def findAccount(transaction_list):
 def displayAccount(transaction_list, account_list):
     for account in account_list:
         print(account)
-
+        debtor_list = []
+        creditor_list = []
+        for transaction in transaction_list:
+            if(account == transaction.debtor):
+#                print(transaction.date + "'" + transaction.debtor + "'" + transaction.debtor_charge)
+                debtor_list.append(transaction.date + "'" + transaction.debtor + "'" + transaction.debtor_charge)
+            if(account == transaction.creditor):
+#                print(",,," + transaction.date + "'" + transaction.creditor + "'" + transaction.creditor_charge)
+                creditor_list.append(",,," + transaction.date + "'" + transaction.creditor + "'" + transaction.creditor_charge)
+        numberOfDebtorItem = len(debtor_list)
+        numberOfCreditorItem = len(creditor_list)
+        if(numberOfDebtorItem < numberOfCreditorItem):
+            numberOfLarger = numberOfCreditorItem
+            numberOfSmaller = numberOfDebtorItem 
+        else:
+            numberOfLarger = numberOfDebtorItem
+            numberOfSmaller = numberOfCreditorItem
+        if((numberOfDebtorItem == 0) and (numberOfCreditorItem == 0)):
+            print("Nothing")
+        elif((numberOfDebtorItem != 0) and (numberOfCreditorItem == 0)):
+            for index in range(numberOfLarger):
+                print(transaction.date + "'" + transaction.debtor + "'" + transaction.debtor_charge)
+        elif((numberOfDebtorItem == 0) and (numberOfCreditorItem != 0)):
+            for index in range(numberOfLarger):
+                print(",,," + transaction.date + "'" + transaction.creditor + "'" + transaction.creditor_charge)
+        else:
+            for index in range(numberOfLarger):
+                if((index < numberOfDebtorItem) and (index < numberOfCreditorItem)):
+                    print(transaction.date + "'" + transaction.debtor + "'" + transaction.debtor_charge + "'" + transaction.date + "'" + transaction.creditor + "'" + transaction.creditor_charge)
+                elif((index < numberOfDebtorItem) and (index >= numberOfCreditorItem)):
+                    print(transaction.date + "'" + transaction.debtor + "'" + transaction.debtor_charge)
+                elif((index >= numberOfDebtorItem) and (index < numberOfCreditorItem)):
+                    print(transaction.date + "'" + transaction.creditor + "'" + transaction.creditor_charge)
 
 transaction_list = []
 account_list = []
