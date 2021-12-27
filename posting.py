@@ -48,9 +48,9 @@ def displayAccount(transaction_list, account_list):
         creditor_list = []
         for transaction in transaction_list:
             if(account == transaction.debtor):
-                debtor_list.append(transaction.date + "," + transaction.debtor + "," + transaction.debtor_charge)
+                debtor_list.append(transaction.date + "," + transaction.creditor + "," + transaction.debtor_charge)
             if(account == transaction.creditor):
-                creditor_list.append(transaction.date + "," + transaction.creditor + "," + transaction.creditor_charge)
+                creditor_list.append(transaction.date + "," + transaction.debtor + "," + transaction.creditor_charge)
         numberOfDebtorItem = len(debtor_list)
         numberOfCreditorItem = len(creditor_list)
         if(numberOfDebtorItem < numberOfCreditorItem):
@@ -84,9 +84,9 @@ def writeAccount(transaction_list, account_list, outputfile):
         creditor_list = []
         for transaction in transaction_list:
             if(account == transaction.debtor):
-                debtor_list.append(transaction.date + "," + transaction.debtor + "," + transaction.debtor_charge)
+                debtor_list.append(transaction.date + "," + transaction.creditor + "," + transaction.debtor_charge)
             if(account == transaction.creditor):
-                creditor_list.append(transaction.date + "," + transaction.creditor + "," + transaction.creditor_charge)
+                creditor_list.append(transaction.date + "," + transaction.debtor + "," + transaction.creditor_charge)
         numberOfDebtorItem = len(debtor_list)
         numberOfCreditorItem = len(creditor_list)
         if(numberOfDebtorItem < numberOfCreditorItem):
@@ -125,11 +125,7 @@ if len(args) == 2:
             if(len(items[0]) != 0):
                 transaction = Transaction(items[0], items[1], items[2], items[3], items[4])
                 transaction_list.append(transaction)
-#    for transaction in transaction_list:
-#        print(transaction.date)
     account_list = findAccount(transaction_list)
-#    for account in account_list:
-#        print(account)
     displayAccount(transaction_list, account_list)
     with open('output.csv', 'w') as outputfile:
         writeAccount(transaction_list, account_list, outputfile)
