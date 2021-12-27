@@ -48,10 +48,8 @@ def displayAccount(transaction_list, account_list):
         creditor_list = []
         for transaction in transaction_list:
             if(account == transaction.debtor):
-#                print(transaction.date + "'" + transaction.debtor + "'" + transaction.debtor_charge)
                 debtor_list.append(transaction.date + "'" + transaction.debtor + "'" + transaction.debtor_charge)
             if(account == transaction.creditor):
-#                print(",,," + transaction.date + "'" + transaction.creditor + "'" + transaction.creditor_charge)
                 creditor_list.append(",,," + transaction.date + "'" + transaction.creditor + "'" + transaction.creditor_charge)
         numberOfDebtorItem = len(debtor_list)
         numberOfCreditorItem = len(creditor_list)
